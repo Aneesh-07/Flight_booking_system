@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3 align="center">Admin Panel</h3>
+
+    <!-- Add Flights Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Add Flights
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/add-flight">
+                <div class="form-group">
+                    <label for="flightNumber">Flight Number</label>
+                    <input type="text" class="form-control" id="flightNumber" name="flightNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="source">Source</label>
+                    <input type="text" class="form-control" id="source" name="source" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" class="form-control" id="destination" name="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="departureTime">Departure Time</label>
+                    <input type="time" class="form-control" id="departureTime" name="departureTime" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Flight</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Remove Flights Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Remove Flights
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/remove-flight">
+                <div class="form-group">
+                    <label for="flightNumberToRemove">Flight Number</label>
+                    <input type="text" class="form-control" id="flightNumberToRemove" name="flightNumberToRemove" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Remove Flight</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Bookings Form -->
+    <div class="card">
+        <div class="card-header">
+            View Bookings
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/view-bookings">
+                <div class="form-group">
+                    <label for="flightNumberToView">Flight Number</label>
+                    <input type="text" class="form-control" id="flightNumberToView" name="flightNumberToView" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateToView">Date</label>
+                    <input type="date" class="form-control" id="dateToView" name="dateToView" required>
+                </div>
+                <div class="form-group">
+                    <label for="departureTimeToView">Departure Time</label>
+                    <input type="time" class="form-control" id="departureTimeToView" name="departureTimeToView" required>
+                </div>
+                <button type="submit" class="btn btn-info">View Bookings</button>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

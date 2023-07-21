@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Go Back</a>
+            </nav>
+    <div class="container">
+          <h1>Search Results</h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Flight Number</th>
+        <th scope="col">Source</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Date</th>
+        <th scope="col">Departure Time</th>
+        <th scope="col">Available Seats</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+        <tr>
+          <td>{{ flight.flight_number }}</td>
+          <td>{{ flight.source }}</td>
+          <td>{{ flight.destination }}</td>
+          <td>{{ flight.date }}</td>
+          <td>{{ flight.departure_time }}</td>
+          <td>{{ flight.seats_available }}</td>
+          <td>
+            {% if current_user.is_authenticated %}
+              <form method="POST" action="{{ url_for('auth.book_flight', flight_id=flight.id) }}">
+                <button type="submit" class="btn btn-primary" {% if flight.available_seats == 0 %}disabled{% endif %}>
+                  Book
+                </button>
+              </form>
+            {% else %}
+              <a href="{{ url_for('login') }}" class="btn btn-primary">Login to Book</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    </div>
+</body>
+</html>
