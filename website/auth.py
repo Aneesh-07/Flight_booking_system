@@ -34,7 +34,7 @@ def admin_login():
     if request.method == 'GET':
         admin_user = Admin.query.filter_by().first()
         if not admin_user:
-            default_admin = Admin(email = "aneeshtripathi@gmail.com",password = generate_password_hash("Aneesh@123",method='sha256'))
+            default_admin = Admin(email = "admin@gmail.com",password = generate_password_hash("password@123",method='sha256'))
             db.session.add(default_admin)
             db.session.commit()
     if request.method == 'POST':
