@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(200), nullable=True)  # Adding address field (nullable as it might not always be provided)
     country = db.Column(db.String(100), nullable=True)  # Adding country field (nullable as it might not always be provided)
     dob = db.Column(db.String(10), nullable=False)  # Adding dob field (assuming a string field with max length of 10)
+    bookings = db.relationship('Booking', backref='user', lazy=True)
     
     def is_authenticated(self):
         return True
@@ -61,6 +62,5 @@ class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     flight_id = db.Column(db.Integer, db.ForeignKey('flight.id'), nullable=False)
-    seat_number = db.Column(db.String(10), nullable=True)
     flight = db.relationship('Flight', backref='bookings')
     

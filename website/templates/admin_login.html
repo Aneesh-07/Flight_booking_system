@@ -1,42 +1,35 @@
 {% extends "base.html" %}
-{% block title %}Admin Login{% endblock %}
+
+{% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card mt-5">
-        <div class="card-header bg-dark text-white">
-          <h3 class="text-center">Admin Login</h3>
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="width: 300px; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f5f5f5;">
+      <h1 style="text-align: center; margin-bottom: 20px;">Welcome to Flight Booking</h1>
+      <form method="POST">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+          />
         </div>
-        <div class="card-body">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-          {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          {% endfor %}
-          {% endif %}
-          {% endwith %}
-
-          <form method="POST">
-            <div class="mb-3">
-              <label for="email" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-            </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
-            </div>
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-          </form>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+          />
         </div>
-      </div>
+        <br />
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
     </div>
   </div>
-</div>
 {% endblock %}

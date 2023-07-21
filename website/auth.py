@@ -187,3 +187,22 @@ def book_flight(flight_id):
     else:
         flash('Sorry, the flight is fully booked.', 'error')
         return redirect(url_for('views.home'))
+    
+
+@auth.route('/remove-flight', methods=['POST'])
+def remove_flight():
+    flight_number_to_remove = request.form.get('flightNumberToRemove')
+    flight = Flight.query.filter_by(flight_number=flight_number_to_remove).first()
+
+    if flight:
+        try:
+            db.session.delete(flight)
+            db.session.commit()
+            flash('Flight removed successfully!', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash('An error occurred while removing the flight.', 'error')
+    else:
+        flash('Flight not found. Please enter a valid flight number.', 'error')
+
+    return redirect(url_for('views.home'))
